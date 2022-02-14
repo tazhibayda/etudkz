@@ -1,0 +1,2 @@
+# etudkz
+ Team GNYDA

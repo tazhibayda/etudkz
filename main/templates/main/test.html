@@ -1,0 +1,48 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/test.css' %}">
+</head>
+<body>
+
+    <main>
+        <section>
+            <h2>Courses</h2>
+            <ol>
+                {% for course in courses %}
+                    <li class="meetup-item">
+                        <article>
+                            <div class="meetup-summary">
+                                <div class="meetup-image">
+                                    <img src="" , alt="src">
+                                </div>
+                                <div class="meetup-details">
+                                    <h2>{{ course.coursename }}</h2>
+                                    <address>
+                                        <strong>{{ course.teacher }}</strong>
+{#                                        {% if  %}#}
+{#                                            <p>PRICELESS</p>#}
+{#                                        {% else %}#}
+                                            <p>${{ course.price }}</p>
+{#                                        {% endif %}#}
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="meetup-actions">
+                                <a href="" class="btn">
+                                About
+                                </a>
+                            </div>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
+    </main>
+
+</body>
+</html>

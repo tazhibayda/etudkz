@@ -23,6 +23,7 @@ def course(request):
         {'coursename': 'Dota 2','teacher':'Miracle-' , 'price':399},
         {'coursename': 'Dota 2','teacher':'Miracle-' , 'price':399},
         {'coursename': 'Dota 2','teacher':'Miracle-' , 'price':399},
+        {'coursename': 'CS GO','teacher':'S1mple-' , 'price':99},
     ]
     return render(request , 'main/test.html',{
         'courses':courses,

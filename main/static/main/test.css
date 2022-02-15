@@ -61,10 +61,13 @@ ol {
   background-color: #cbfdef;
   border-color: #cb82fb;
   color: #350490;
-  padding: 0.75rem 2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 100px;
+
 }
 
 .meetup-actions .btn:hover {
   background-color: #ba82fb;
   border-color: #ba82fb;
+
 }

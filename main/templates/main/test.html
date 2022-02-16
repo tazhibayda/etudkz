@@ -23,7 +23,12 @@
                                     <h2>{{ course.coursename }}</h2>
                                     <address>
                                         <strong>{{ course.teacher }}</strong>
-                                            <p>${{ course.price }}</p>
+                                            {% if  course.teacher  == 'Yerbol Baygaraev' %}
+                                                <h1>PRICELESS</h1>
+                                            {% else %}
+                                                <p>${{ course.price }}</p>
+                                            {% endif %}
+
                                     </address>
                                 </div>
                             </div>

@@ -1,0 +1,26 @@
+.logo{
+    width: 104px;
+}
+.nav{
+    padding: 15px;
+    text-align: center;
+    background-color: #ff6464;
+}
+.divider{
+    background-color: darkgray;
+    width: 1px;
+    margin-left: 36%;
+}
+.reg{
+    margin-left: 10px;
+}
+a{
+    margin-top: 10px;
+}
+li{
+    margin-top: 0;
+    margin-left: 11%;
+}
+.lgin{
+    margin-left: 5px;
+}

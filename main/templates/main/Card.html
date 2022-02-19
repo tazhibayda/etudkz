@@ -40,6 +40,8 @@
                                         <strong>{{ course.teacher }}</strong>
                                             {% if  course.teacher  == 'Yerbol Baygaraev' %}
                                                 <h1>PRICELESS</h1>
+                                            {% elif  course.teacher  == 'Bissenbay Dauletbaev' %}
+                                                <h1>PRICELESS</h1>
                                             {% else %}
                                                 <p>${{ course.price }}</p>
                                             {% endif %}

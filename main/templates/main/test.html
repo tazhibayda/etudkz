@@ -10,6 +10,10 @@
 <body>
     {% block header %}{% endblock %}
     {% block card %}{% endblock %}
+    {% for v in meets %}
+        <div class="hhh" > Name: {{ v.first }} and location: {{ v.location }}   </div>
+{#        <p></p>#}
+    {% endfor  %}
 
 </body>
 </html>

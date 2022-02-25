@@ -27,4 +27,4 @@ def index(request):
 
 
 def reglog(request):
-    return render()
+    return render(request , 'teach/regorlog.html')

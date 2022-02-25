@@ -6,6 +6,8 @@ import main
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('courses/', include('main.urls')),
+    path('teach/', include('teach.urls')),
+
 ]
 
 

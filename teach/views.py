@@ -13,7 +13,7 @@ def login_view(request):
         user = authenticate(request, username = username , password = password)
         if user is not None:
             login(request,user)
-
+            return HttpResponse("Hello "+username)
             # return render(request , 'teach/login.html')
         else:
             return HttpResponse(123)
@@ -25,3 +25,6 @@ def login_view(request):
 def index(request):
     return HttpResponse('Hello, World')
 
+
+def reglog(request):
+    return render()

@@ -16,7 +16,9 @@ def login_view(request):
             return HttpResponse("Hello "+username)
             # return render(request , 'teach/login.html')
         else:
-            return HttpResponse(123)
+            return render(request , 'teach/login.html',{
+                'msg':'Incorrect '
+            })
             # return HttpResponse(13)
     else:
         return render(request, 'teach/login.html')

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+{% include 'main/header.html' %}
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +9,9 @@
 <body>
 
 <form action="{% url 'login' %}" method="post">
+    {% if msg %}
+        <h2>{{ msg }}</h2>
+    {% endif %}
     {% csrf_token %}
     <input type="text" name="username" placeholder="Username">
     <input type="password" name="password" placeholder="Password">

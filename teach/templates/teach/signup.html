@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="{% url 'reglog' %}" method="post">
+
+    {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm" placeholder="confirm">
+        <input type="submit" value="Sign Up">
+    </form>
+    {% if username%}
+        <div>{{ username }}</div>
+    {% endif %}
+    {% if password %}
+        <h2>{{ password }}</h2>
+        <h2>{{ confirm }}</h2>
+    {% endif %}
+</body>
+</html>

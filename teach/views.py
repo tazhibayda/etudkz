@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponseRedirect , HttpResponse
 from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
 
 
@@ -21,7 +22,14 @@ def login_view(request):
             })
             # return HttpResponse(13)
     else:
-        return render(request, 'teach/login.html')
+        # form = UserCreationForm(request='POST')
+        username = request.POST['username']
+        password = request.POST['password']
+        return render(request, 'teach/signup.html',{
+            'username': username,
+            'password': password,
+
+        })
 
 
 def index(request):
@@ -29,4 +37,18 @@ def index(request):
 
 
 def reglog(request):
-    return render(request , 'teach/regorlog.html')
+    if request.method == 'POST':
+        # form = UserCreationForm(request='POST')
+        # if form.is_valid():
+        #     form.save()
+        username = request.POST['username']
+        password = request.POST['password']
+        confirm = request.POST['confirm']
+        return render(request , 'teach/signup.html',{
+            'username': username,
+            'password': password,
+            'confirm':password==confirm,
+
+        })
+    else:
+        return render(request, 'teach/signup.html')

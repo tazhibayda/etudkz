@@ -23,12 +23,12 @@ def login_view(request):
             # return HttpResponse(13)
     else:
         # form = UserCreationForm(request='POST')
-        username = request.POST['username']
-        password = request.POST['password']
-        return render(request, 'teach/signup.html',{
-            'username': username,
-            'password': password,
-
+        # username = request.POST['username']
+        # password = request.POST['password']
+        return render(request, 'teach/login.html',{
+        #     'username': username,
+        #     'password': password,
+        #
         })
 
 

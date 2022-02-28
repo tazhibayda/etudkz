@@ -14,7 +14,7 @@ SECRET_KEY = secret.SECRET_KEY_h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.107','192.168.1.15','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['192.168.1.107','192.168.1.15','localhost','127.0.0.1','10.48.35.122']
 # Application definition
 
 INSTALLED_APPS = [

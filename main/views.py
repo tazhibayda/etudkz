@@ -44,4 +44,8 @@ def openC(request,courseid):
         teacher = c.teacher
         price = c.price
         # return HttpResponse(name)
-        return render(request,'main/About.html')
+        return render(request,'main/About.html',{
+            'name':name,
+            'teacher':teacher,
+            'id':price,
+        })

@@ -49,3 +49,4 @@ def openC(request,courseid):
             'teacher':teacher,
             'id':price,
         })
+

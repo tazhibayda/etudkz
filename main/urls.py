@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('' , views.course),
+    path('courses/<int:courseid>' , views.openC)
 ]

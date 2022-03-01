@@ -20,7 +20,8 @@ def course(request):
     })
 
 def openC(request,courseid):
-    if(courseid > Course.objects.all().__len__() or courseid<1):
+    len = Course.objects.all().last().id
+    if(courseid > len or courseid<1):
         return HttpResponse("ERROR")
     else:
         c = Course.objects.all().get(pk=courseid)

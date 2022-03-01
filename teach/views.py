@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect , HttpResponse
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse
-
+from main.models import Course
 
 # Create your views here.
 
@@ -33,8 +33,23 @@ def login_view(request):
 
 
 def index(request):
-    return HttpResponse('Hello, World')
+    return render(request , 'teach/addCourse.html')
 
+def add(request):
+    if request.method == 'POST':
+        crs = Course()
+        coursename = request.POST['coursename']
+        teacher = request.POST['teacher']
+        price = request.POST['price']
+        # courses = Course(coursename,teacher,price)
+        # Course.__new__(courses)
+        crs.coursename = coursename
+        crs.teacher = teacher
+        crs.price = price
+        crs.save()
+        return render(request , 'teach/addCourse.html',{
+            'msg':'Added to courses'
+        })
 
 def reglog(request):
     if request.method == 'POST':

@@ -3,16 +3,7 @@ from django.shortcuts import render , HttpResponse
 from .models import Course
 # Create your views here.
 
-def send(request):
-    meets = [
-        {'first': 'IP' , 'location' : "kitchen"},
-        {'first': 'MP' , 'location' : "Gogolya"},
-        {'first': 'Katok' , 'location' : "Medeo"},
-    ]
 
-    return render(request , 'main/Card.html' ,{
-        'meets' : meets,
-    })
 def course(request):
     courses = Course.objects.all()
     return render(request , 'main/Card.html',{

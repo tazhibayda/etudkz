@@ -1,20 +1,18 @@
 {% include 'main/header.html'%}
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 
 <form action="{% url 'reglog' %}" method="post">
-    {{ form }}
-{##}
+    {{ form.as_p }}
     {% csrf_token %}
-{#        <input type="text" name="username" placeholder="Username">#}
-{#        <input type="email" name="email" placeholder="Email">#}
-{#        <input type="password" name="password" placeholder="Password">#}
-{#        <input type="password" name="confirm" placeholder="confirm">#}
+
         <input type="submit" value="Sign Up">
     </form>
 {#    {% if username%}#}
@@ -25,5 +23,22 @@
 {#        <h2>{{ password }}</h2>#}
 {#        <h2>{{ confirm }}</h2>#}
 {#    {% endif %}#}
+{#=======#}
+{#    <form action="{% url 'reglog' %}" method="post">#}
+{##}
+{#        {% csrf_token %}#}
+{#        <input type="text" name="username" placeholder="Username">#}
+{#        <input type="password" name="password" placeholder="Password">#}
+{#        <input type="password" name="confirm" placeholder="confirm">#}
+{#        <input type="submit" value="Sign Up">#}
+{#    </form>#}
+{#    {% if username%}#}
+{#    <div>{{ username }}</div>#}
+{#    {% endif %} {% if password %}#}
+{#    <h2>{{ password }}</h2>#}
+{#    <h2>{{ confirm }}</h2>#}
+{#    {% endif %}#}
+{#>>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30#}
 </body>
+
 </html>

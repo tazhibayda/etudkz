@@ -24,5 +24,8 @@ def openC(request,courseid):
             'teacher':teacher,
             'id':price,
         })
+# <<<<<<< HEAD
+# =======
 
 
+# >>>>>>> 169d09daf1e0dae5fc90a39d8f41fb29f39d14c7

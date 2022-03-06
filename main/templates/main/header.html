@@ -1,14 +1,9 @@
-{% extends 'main/test.html' %}
-{% load static %}
-
-
-{% block header %}
-    <nav class="nav" style="margin: -1%">
+{% extends 'main/test.html' %} {% load static %} {% block header %}
+<nav class="nav" style="margin: -1%">
     <span>
-                <a  href="/html/"><img class="logo" src=" {% static 'main/logo.png' %} "></a>
-
+        <a  href="/html/"><img class="logo" src=" {% static 'main/logo.png' %} "></a>
     <ol>
-        <li><a href="/python/">Catalog</a></li>
+        <li><a href="">Catalog</a></li>
         <li><a href="/teach/">Teach</a></li>
         <li><input type="search" placeholder="Search..."></li>
         <div class="divider"></div>
@@ -16,6 +11,6 @@
         <li class="reg"> <a href="/teach/test"><button>Sign Up</button> </a></li>
     </ol>
     </span>
-    </nav>
+</nav>
 
 {% endblock %}

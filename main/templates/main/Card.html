@@ -1,5 +1,4 @@
 {% include 'main/header.html' %}
-
 {% load static %}
 
 {% block card %}
@@ -31,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="meetup-actions">
-                                <a href="" class="btn">
+                                <a href="{{course.pk}}" class="btn">
                                 About
                                 </a>
                             </div>
@@ -44,3 +43,5 @@
 
 
 {% endblock %}
+
+{% include 'main/Footer.html' %}

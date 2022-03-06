@@ -20,16 +20,21 @@ def course(request):
     })
 
 def openC(request,courseid):
-    if(courseid > Course.objects.all().__len__() or courseid<1):
+    len = Course.objects.all().last().id
+    if(courseid > len or courseid<1):
         return HttpResponse("ERROR")
     else:
         c = Course.objects.all().get(pk=courseid)
         name = c.coursename
         teacher = c.teacher
         price = c.price
-        # return HttpResponse(name)
         return render(request,'main/About.html',{
             'name':name,
             'teacher':teacher,
             'id':price,
         })
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 169d09daf1e0dae5fc90a39d8f41fb29f39d14c7

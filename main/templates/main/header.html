@@ -9,7 +9,9 @@
         <li><a href="/">Catalog</a></li>
 {#>>>>>>> 169d09daf1e0dae5fc90a39d8f41fb29f39d14c7#}
         <li><a href="/teach/">Teach</a></li>
-        <li><input type="search" placeholder="Search..."></li>
+        <form action="{% url 'searching' %}" method="get">
+        <li><input type="search" placeholder="Search..." name = 'name'></li>
+        </form>
         <div class="divider"></div>
         <li class="lgin"> <a href="/teach/login"><button>Log In</button></a></li>
         <li class="reg"> <a href="/teach/test"><button>Sign Up</button> </a></li>

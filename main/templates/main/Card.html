@@ -10,6 +10,7 @@
                 {% for course in courses %}
                     <li class="meetup-item">
                         <article>
+                            <a href="{% url 'delete'  courseid=course.id %}">X</a>
                             <div class="meetup-summary">
                                 <div class="meetup-image">
                                     <img src="{%static 'main/img.jpeg'%}" , alt="src">
@@ -22,6 +23,8 @@
                                                 <h1>PRICELESS</h1>
                                             {% elif  course.teacher  == 'Bissenbay Dauletbaev' %}
                                                 <h1>PRICELESS</h1>
+                                            {% elif course.price == 0 %}
+                                                <h1>Free</h1>
                                             {% else %}
                                                 <p>${{ course.price }}</p>
                                             {% endif %}

@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirec
 # =======
 import re
 from django.shortcuts import render,HttpResponseRedirect , HttpResponse,redirect
+from main.models import Course
 # >>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.forms import UserCreationForm
@@ -68,6 +69,8 @@ def add(request):
         return render(request , 'teach/addCourse.html',{
             'msg':f"Added to courses {coursename}, {teacher}, {price}"
         })
+
+
 
 def reglog(request):
 # <<<<<<< HEAD

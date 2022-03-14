@@ -1,15 +1,40 @@
+{% load static %}
 {% include 'main/header.html' %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'main/about.css' %}">
 </head>
 <body>
 <h1>About</h1>
 
-        <h2>{{ name }}</h2>
-        <h2>{{ teacher }}</h2>
-        <h2>{{ id }}</h2>
+    <div class="course">
+               <h2>{{ name }}</h2>
+                <h2>{{ teacher }}</h2>
+                <h2>{{ id }}</h2>
+    </div>
+
+    <div>
+
+        {% for c in comments %}
+            <ul class="comment">
+                <li>
+                    <h3>{{  c.author }}</h3>
+                    <h4>{{ c.post }}</h4>
+                    <h6>{{ c.text }}</h6>
+                    <p>{{ c.date }}</p>
+                </li>
+            </ul>
+
+        {% endfor %}
+
+    </div>
+
+    <form method="post" action="{% url 'addcmnt' %}">
+        {% csrf_token %}
+        <textarea placeholder="comment here..." name="com"></textarea>
+        <button type="submit">Add comment</button>
+    </form>
 </body>
 </html>

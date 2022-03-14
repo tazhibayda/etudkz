@@ -1,51 +1,47 @@
-# <<<<<<< HEAD
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirect
-# =======
 import re
 from django.shortcuts import render,HttpResponseRedirect , HttpResponse,redirect
 from main.models import Course
-# >>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.forms import UserCreationForm
 # from django. import response
 from django.template import response
 from django.urls import reverse
-# <<<<<<< HEAD
 from django.contrib.auth.models import auth,User
-
 from teach.forms import SignUpForm
-
-
-# =======
 from main.models import Course
-# <<<<<<< HEAD
-from .models import Teacher
-# =======
-# >>>>>>> 169d09daf1e0dae5fc90a39d8f41fb29f39d14c7
 
-# >>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30
-# Create your views here.
+
+
+
+def account(request):
+
+    if request.user.is_authenticated:
+        return render(request, 'teach/account.html',{
+            'username':request.user.username
+        })
+    else:
+        return render(request, 'teach/login.html')
 
 
 def login_view(request):
+    boo = request.user.is_authenticated
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username = username , password = password)
         if user is not None:
             login(request,user)
-            return render(request , 'teach/test_log.html',{
-                'username' : username,
+            return render(request, 'main/header.html', {
+                'request': request
             })
+
         else:
             return render(request , 'teach/login.html',{
                 'msg':'Incorrect '
             })
             # return HttpResponse(13)
     else:
-        # form = UserCreationForm(request='POST')
-        # username = request.POST['username']
-        # password = request.POST['password']
         return render(request, 'teach/login.html',{
         })
 
@@ -73,11 +69,41 @@ def add(request):
 
 
 def reglog(request):
-# <<<<<<< HEAD
+    # print(request.method)
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        user = request.POST['username']
+        if User.objects.filter(username=user).exists():
+            # print(12312321)
+            return render(request, 'teach/signup.html',{
+                'msg':'User already exists plaese choose another username',
+                'form':form,
+            })
+        elif form.is_valid():
+            form.save()
+        else:
+            return render(request, 'teach/signup.html', {
+                'msg': 'Your password or username entered incorrectly',
+                'form': form,
+            })
     form = UserCreationForm()
-    return render(request, 'teach/signup.html' ,{
+    return render(request, 'teach/signup.html' , {
         'form':form
     })
+
+def regist(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+        else:
+            form = UserCreationForm()
+
+    return render(request, 'teach/regorlog.html' , {
+        'form':form
+    })
+
     # if request.method == 'POST':
         # form = UserCreationForm(request='POST')
         # if form.is_valid():

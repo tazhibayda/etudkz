@@ -8,37 +8,15 @@
 </head>
 
 <body>
-
+    {% if msg %}
+        <h2>{{ msg }}</h2>
+    {% endif %}
 <form action="{% url 'reglog' %}" method="post">
-    {{ form.as_p }}
+    {{ form.as_ul }}
     {% csrf_token %}
 
         <input type="submit" value="Sign Up">
     </form>
-{#    {% if username%}#}
-{#        <div>{{ username }}</div>#}
-{#        <div>{{ email }}</div>#}
-{#    {% endif %}#}
-{#    {% if password %}#}
-{#        <h2>{{ password }}</h2>#}
-{#        <h2>{{ confirm }}</h2>#}
-{#    {% endif %}#}
-{#=======#}
-{#    <form action="{% url 'reglog' %}" method="post">#}
-{##}
-{#        {% csrf_token %}#}
-{#        <input type="text" name="username" placeholder="Username">#}
-{#        <input type="password" name="password" placeholder="Password">#}
-{#        <input type="password" name="confirm" placeholder="confirm">#}
-{#        <input type="submit" value="Sign Up">#}
-{#    </form>#}
-{#    {% if username%}#}
-{#    <div>{{ username }}</div>#}
-{#    {% endif %} {% if password %}#}
-{#    <h2>{{ password }}</h2>#}
-{#    <h2>{{ confirm }}</h2>#}
-{#    {% endif %}#}
-{#>>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30#}
 </body>
 
 </html>

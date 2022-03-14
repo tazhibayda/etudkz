@@ -59,12 +59,25 @@ def srch(request ):
         });
 
 
-def addCom(request):
+def addCom(request,courseid):
     if request.method== 'POST':
 
         cmnt = request.POST['com']
-        return
 
+    else:
+        c = Course.objects.all().get(pk=courseid)
+        name = c.coursename
+        teacher = c.teacher
+        price = c.price
+        comment = Comment.objects.filter(
+            Q(course_id=c.pk)
+        )
+        return render(request, 'main/About.html', {
+            'name': name,
+            'teacher': teacher,
+            'id': price,
+            'comments': comment
+        })
 def openC(request,courseid):
     len = Course.objects.all().last().id
 

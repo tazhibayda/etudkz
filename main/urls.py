@@ -8,6 +8,6 @@ urlpatterns = [
     path('del/<int:courseid>' , views.delete  , name='delete'),
     path('result' , views.srch, name='searching'),
     path('logout', views.logout_view , name = 'logout' ),
-    path('<int:courseid>/addcmnt', views.openC , name='addcmnt'),
+    path('<int:courseid>/addcmnt', views.addCom , name='addcmnt'),
 
 ]

@@ -33,4 +33,4 @@ class Comment(models.Model):
    date = models.DateField(default=timezone.now)
 
    def __str__(self):
-       return f'{self.author}, : {self.course_id}, : {self.post} , {self.text} , {self.date}'
+       return f'{self.author}, : {self.course_id}, : {self.post} , {self.text} , {self.date} , {self.pk}'

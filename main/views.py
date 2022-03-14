@@ -63,7 +63,48 @@ def addCom(request,courseid):
     if request.method== 'POST':
 
         cmnt = request.POST['com']
+        c = Course.objects.all().get(pk=courseid)
+        name = c.coursename
+        teacher = c.teacher
+        price = c.price
+        comment = Comment.objects.filter(
+            Q(course_id=c.pk)
+        )
+        if not request.user.is_authenticated:
+            return render(request, 'main/About.html', {
+                'name': name,
+                'teacher': teacher,
+                'id': price,
+                'crsid': courseid,
+                'comments': comment,
+                'msg': 'You not logged in'
+            })
+        else:
+            com = Comment()
+            com.author = request.user.username
+            com.course_id = courseid
+            com.post = request.POST['post']
+            com.text = cmnt
+            com.date = timezone.now()
+            time = str(com.date.strftime('%H:%M:%S'))
 
+            com.save()
+            return render(request, 'main/About.html', {
+                'name': name,
+                'teacher': teacher,
+                'id': price,
+                'crsid': courseid,
+                'time': time,
+                'comments': comment,
+            })
+
+        return render(request, 'main/About.html', {
+            'name': name,
+            'teacher': teacher,
+            'id': price,
+            'crsid': courseid,
+            'comments': comment,
+        })
     else:
         c = Course.objects.all().get(pk=courseid)
         name = c.coursename
@@ -76,7 +117,9 @@ def addCom(request,courseid):
             'name': name,
             'teacher': teacher,
             'id': price,
-            'comments': comment
+            'comments': comment,
+            'crsid': courseid,
+            'msg':'nopost'
         })
 def openC(request,courseid):
     len = Course.objects.all().last().id
@@ -92,9 +135,11 @@ def openC(request,courseid):
         comment = Comment.objects.filter(
             Q(course_id=c.pk)
         )
+
         return render(request,'main/About.html',{
-            'name':name,
-            'teacher':teacher,
-            'id':price,
-            'comments':comment
+            'name': name,
+            'teacher': teacher,
+            'id': price,
+            'crsid': courseid,
+            'comments': comment,
         })

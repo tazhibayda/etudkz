@@ -87,14 +87,16 @@ def addCom(request,courseid):
             com.text = cmnt
             com.date = timezone.now()
             time = str(com.date.strftime('%H:%M:%S'))
+            # com.time = str(timezone.now().time())
 
+            # print(com.time)
             com.save()
             return render(request, 'main/About.html', {
                 'name': name,
                 'teacher': teacher,
                 'id': price,
                 'crsid': courseid,
-                'time': time,
+                'time':com.time,
                 'comments': comment,
             })
 
@@ -135,11 +137,15 @@ def openC(request,courseid):
         comment = Comment.objects.filter(
             Q(course_id=c.pk)
         )
+        if comment.__len__() == 0:
 
-        return render(request,'main/About.html',{
-            'name': name,
-            'teacher': teacher,
-            'id': price,
-            'crsid': courseid,
-            'comments': comment,
-        })
+            return render(request,'main/About.html',{
+                'name': name,
+                'teacher': teacher,
+                'id': price,
+                'crsid': courseid,
+                'comments': comment,
+            })
+        else:
+            return redirect('addcmnt',courseid=courseid)
+

@@ -7,34 +7,38 @@
         <link rel="stylesheet" type="text/css" href="{% static 'main/about.css' %}">
 </head>
 <body>
+<h1>{{ msg }}</h1>
+
+
 <h1>About</h1>
-
-    <div class="course">
-               <h2>{{ name }}</h2>
-                <h2>{{ teacher }}</h2>
-                <h2>{{ id }}</h2>
-    </div>
-
-    <div>
-
-        {% for c in comments %}
-            <ul class="comment">
-                <li>
-                    <h3>{{  c.author }}</h3>
-                    <h4>{{ c.post }}</h4>
-                    <h6>{{ c.text }}</h6>
-                    <p>{{ c.date }}</p>
-                </li>
-            </ul>
-
-        {% endfor %}
-
-    </div>
-
-    <form method="post" >
+<div class="course">
+    <h2>{{ name }}</h2>
+    <h2>{{ teacher }}</h2>
+    <h2>{{ id }}</h2>
+    <h2>{{ crsid }}</h2>
+</div>
+<form method="post" action="{% url 'addcmnt' courseid=crsid%}">
         {% csrf_token %}
+        <div class="comm">
+        <input type="text" name="post">
         <textarea placeholder="comment here..." name="com"></textarea>
-        <button type="submit">Add comment</button>
+        <a><button type="submit">Add comment</button></a>
+        </div>
     </form>
 </body>
+        <div>{% for c in comments %}
+
+        <ul class="comment">
+            <li>
+                <h3>{{  c.author }}</h3>
+                <h4>{{ c.post }}</h4>
+                <h6>{{ c.text }}</h6>
+{#                <p>{{ c.date.ctime}}</p>#}
+                <small>{{ time }}</small>
+            </li>
+        </ul>
+
+    {% endfor %}
+
+    </div>
 </html>

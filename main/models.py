@@ -31,6 +31,6 @@ class Comment(models.Model):
    post = models.CharField(max_length=64)
    text = models.TextField(max_length=1024)
    date = models.DateField(default=timezone.now)
-
+   time = models.CharField(max_length=64,default="asds")
    def __str__(self):
-       return f'{self.author}, : {self.course_id}, : {self.post} , {self.text} , {self.date}'
+       return f''

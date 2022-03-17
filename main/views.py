@@ -87,9 +87,6 @@ def addCom(request,courseid):
             com.text = cmnt
             com.date = timezone.now()
             time = str(com.date.strftime('%H:%M:%S'))
-            # com.time = str(timezone.now().time())
-
-            # print(com.time)
             com.save()
             return render(request, 'main/About.html', {
                 'name': name,

@@ -29,6 +29,7 @@
         <div>{% for c in comments %}
 
         <ul class="comment">
+        <a style="float: right; margin-right: 2%" href="{% url 'delcom' c.pk %}">X</a>
             <li>
                 <h3>{{  c.author }}</h3>
                 <h4>{{ c.post }}</h4>

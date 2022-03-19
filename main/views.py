@@ -15,7 +15,7 @@ def course(request):
 
 def header(request):
     boo = request.user.is_authenticated()
-    return render(request , 'main/header.html',{
+    return render(request , 'main/profile.html',{
         'request':request
     })
 

@@ -1,4 +1,5 @@
 from django.urls import path,include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from . import views
 
@@ -8,5 +9,6 @@ urlpatterns = [
     path('test/',views.reglog , name='reglog'),
     path('add', views.add , name = 'add'),
     path('account', views.account, name = 'account'),
-
+    # path('account', views.account, name = 'header'),
 ]
+urlpatterns += staticfiles_urlpatterns()

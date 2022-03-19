@@ -12,7 +12,7 @@
         <div class="divider"></div>
 
         {% if request.user.is_authenticated %}
-            <li class="lgin"> <a id ='usr' href=""><button>{{ request.user.username }}</button></a></li>
+            <li class="lgin"> <a id ='' href="/teach/account"><button>{{ request.user.username }}</button></a></li>
             <li class="reg"> <a href="{% url 'logout' %}"><button>logout</button> </a></li>
         {% else %}
             <li class="lgin"> <a href="/teach/login"><button>Log in</button></a></li>

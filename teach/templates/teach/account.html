@@ -1,0 +1,92 @@
+{% include 'main/header.html' %}
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts.css' %}">
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="nav1">
+            <div class="profile1">
+                <!-- {% load static %} -->
+                <!-- <img src="{%static 'img.jpeg' %}" , alt="src"> -->
+
+                <h3 class="user_">{{ request.user.username }}</h3>
+            </div>
+            <div class="profile2">
+                <ul class="profile2_ul">
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-profile">
+                    Profile
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-photo">
+                    Image
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-account">
+                            Account
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-payment-methods">
+                            Payment method
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-privacy">
+                            Confidentiality
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-notifications">
+                            Notifications
+                    </a>
+                    </li>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:close-account">
+                            Close account
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav2">
+            <div class="navnav">
+                <div class="pr">
+                    <h1>Public profile</h1>
+                    <p>Add information about yourself</p>
+                </div>
+                <div class="profile3">
+                    <div class="in_g">
+                        <input type="text" name="name" value='{{ request.user.username }}' maxlength="64" placeholder="Имя" class="textinput textInput form-control" required="" id="id_name">
+                    </div>
+                    <div class="in_g">
+                        <input type="text" name="name" value='' maxlength="64" placeholder="Surname" class="textinput textInput form-control" required="" id="id_name">
+                    </div>
+                    <div class="in_g">
+                        <input type="text" name="name" value='' maxlength="64" placeholder="Workspace" class="textinput textInput form-control" required="" id="id_name">
+                    </div>
+                </div>
+                <div class="submit-row"> <input type="submit" name="submit" value="Сохранить" class="btn btn-primary " id="submit-id-submit">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

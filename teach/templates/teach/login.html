@@ -12,20 +12,11 @@
     {% if msg %}
     <h2>{{ msg }}</h2>
     {% endif %}
-{#<<<<<<< HEAD#}
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" value="Login">
-{#=======#}
-{#    <form action="{% url 'login' %}" method="post">#}
-{##}
-{#        {% csrf_token %}#}
-{#        <input type="text" name="username" placeholder="Username">#}
-{#        <input type="password" name="password" placeholder="Password">#}
-{#        <input type="submit" value="Login">#}
-{#>>>>>>> 8405947f5850499c4ec15157c8510f21c27a7a30#}
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login">
     </form>
 </body>
 

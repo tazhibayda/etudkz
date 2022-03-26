@@ -9,5 +9,5 @@ urlpatterns = [
     path('result' , views.srch, name='searching'),
     path('logout', views.logout_view , name = 'logout' ),
     path('<int:courseid>/addcmnt', views.addCom , name='addcmnt'),
-
+    path('delcom/<int:commentId>',views.delcomment ,name='delcom')
 ]

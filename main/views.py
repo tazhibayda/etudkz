@@ -12,23 +12,28 @@ def course(request):
         'courses':courses,
     })
 
+
 def header(request):
     boo = request.user.is_authenticated()
-    return render(request , 'main/header.html',{
+    return render(request , 'main/profile.html',{
         'request':request
     })
 
+
+def delcomment(request , commentId):
+    c = Comment.objects.get(pk=commentId)
+    c.delete()
+    return redirect("/"+str(c.course_id))
 
 def logout_view(request):
     logout(request)
     return render(request,'teach/login.html')
 
+
 def delete(request , courseid):
     crs = Course.objects.get(id=courseid)
     crs.delete()
     return redirect('course')
-
-
 
 
 def srch(request ):
@@ -120,6 +125,8 @@ def addCom(request,courseid):
             'crsid': courseid,
             'msg':'nopost'
         })
+
+
 def openC(request,courseid):
     len = Course.objects.all().last().id
 

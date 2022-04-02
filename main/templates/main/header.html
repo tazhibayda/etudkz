@@ -4,6 +4,9 @@
         <a  href="/html/"><img class="logo" src=" {% static 'main/logo.png' %} "></a>
     <ol>
         <li><a href="/">Catalog</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'learn'%}">Learning</a></li>
+        {% endif %}
         <li><a href="/teach/">Teach</a></li>
         <form action="{% url 'searching' %}" method="post">
             {% csrf_token %}

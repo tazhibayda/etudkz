@@ -153,3 +153,29 @@ def openC(request,courseid):
         else:
             return redirect('addcmnt',courseid=courseid)
 
+def chec_learning(request):
+    name = request.user.username
+    learn_courses = Learning.objects.filter(
+        Q(user = name)
+    )
+    course_name = learn_courses.all()
+
+    return render(request, 'main/Learning.html', {
+        'name': name,
+        'crs':course_name
+    })
+
+def add_to_learning(request, course_id):
+    learn = Learning()
+    learn.user = request.user.username
+    learn.course_id = course_id
+    learn.save()
+
+    return redirect('addcmnt',courseid=course_id)
+
+def delern(request ,courseid):
+    learn = Learning.objects.get(course_id=courseid)
+    learn.delete()
+
+    return redirect('learn')
+

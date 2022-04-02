@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>About</h1>
+<div class="course">
+    <h2>{{ name }}</h2>
+    <h1>You are learning</h1>
+        <div>{% for c in crs%}
+            <ul class="comment">
+                <li>
+                    <h3>{{ c.course_id }}</h3>
+                    <a style="float: right; margin-right: 2%" href="{% url 'delern' c.course_id %}">X</a>
+                </li>
+            </ul>
+            {% endfor %}
+</div>
+</body>
+</html>

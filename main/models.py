@@ -34,3 +34,11 @@ class Comment(models.Model):
    time = models.CharField(max_length=64,default="asds")
    def __str__(self):
        return f''
+
+
+class Learning(models.Model):
+    user = models.CharField(max_length=64)
+    course_id = models.IntegerField(null=False)
+
+    def __str__(self):
+        return f' user: {self.user}, course_id: {self.course_id} {self.id}'

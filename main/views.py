@@ -1,6 +1,7 @@
 from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 from django.shortcuts import render , HttpResponse,redirect
-
+from django.urls import *
 from .models import *
 # Create your views here.
 from django.db.models import Q
@@ -36,6 +37,7 @@ def delete(request , courseid):
     return redirect('course')
 
 
+
 def srch(request ):
     courses = Course.objects.all()
 
@@ -64,10 +66,11 @@ def srch(request ):
         });
 
 
-def addCom(request,courseid):
+def addComC(request,courseid , parent):
     if request.method== 'POST':
 
-        cmnt = request.POST['com']
+        cmnt = request.POST['com_child']
+
         c = Course.objects.all().get(pk=courseid)
         name = c.coursename
         teacher = c.teacher
@@ -77,6 +80,7 @@ def addCom(request,courseid):
         )
         if not request.user.is_authenticated:
             return render(request, 'main/About.html', {
+                'request':request,
                 'name': name,
                 'teacher': teacher,
                 'id': price,
@@ -91,14 +95,14 @@ def addCom(request,courseid):
             com.post = request.POST['post']
             com.text = cmnt
             com.date = timezone.now()
-            time = str(com.date.strftime('%H:%M:%S'))
+            anon = request.POST.get('anon', False)
+            com.anonymous = anon
             com.save()
             return render(request, 'main/About.html', {
                 'name': name,
                 'teacher': teacher,
                 'id': price,
                 'crsid': courseid,
-                'time':com.time,
                 'comments': comment,
             })
 
@@ -109,6 +113,68 @@ def addCom(request,courseid):
             'crsid': courseid,
             'comments': comment,
         })
+    else:
+        c = Course.objects.all().get(pk=courseid)
+        name = c.coursename
+        teacher = c.teacher
+        price = c.price
+        comment = Comment.objects.filter(
+            Q(course_id=c.pk)
+        )
+        return render(request, 'main/About.html', {
+            'name': name,
+            'teacher': teacher,
+            'id': price,
+            'comments': comment,
+            'crsid': courseid,
+            'msg':'nopost'
+        })
+
+
+
+def addCom(request,courseid):
+    if request.method== 'POST':
+
+        cmnt = request.POST['com']
+        c = Course.objects.all().get(pk=courseid)
+        name = c.coursename
+        teacher = c.teacher
+        price = c.price
+        comment = Comment.objects.filter(
+            Q(course_id=c.pk)
+        )
+
+        if not request.user.is_authenticated:
+            return render(request, 'main/About.html', {
+                'request':request,
+                'name': name,
+                'teacher': teacher,
+                'id': price,
+                'crsid': courseid,
+                'comments': comment,
+                'msg': 'You not logged in'
+            })
+        else:
+            com = Comment()
+            com.author = request.user.username
+            com.course_id = courseid
+            com.post = request.POST['post']
+            com.text = cmnt
+            com.date = timezone.now()
+            anon = request.POST.get('anon', False)
+            com.anonymous = anon
+            # com.time = str(timezone.now().time())
+
+            # print(com.time)
+            com.save()
+            return render(request, 'main/About.html', {
+                'name': name,
+                'teacher': teacher,
+                'id': price,
+                'crsid': courseid,
+                'comments': comment,
+            })
+
     else:
         c = Course.objects.all().get(pk=courseid)
         name = c.coursename
@@ -144,6 +210,7 @@ def openC(request,courseid):
         if comment.__len__() == 0:
 
             return render(request,'main/About.html',{
+                'request':request,
                 'name': name,
                 'teacher': teacher,
                 'id': price,
@@ -153,11 +220,31 @@ def openC(request,courseid):
         else:
             return redirect('addcmnt',courseid=courseid)
 
+def like(request , courseid):
+    crs = Course.objects.get(pk = courseid)
+    cont = False
+    if crs.added.contains(request.user):
+        crs.added.remove(request.user)
+        crs.save()
+    else:
+        crs.added.add(request.user)
+        crs.save()
+
+
+
+    courses = Course.objects.all()
+    # return reverse('course')
+    return render(request , 'main/Card.html',{
+        'courses':courses,
+        'request':request,
+    })
+
 def chec_learning(request):
     name = request.user.username
     learn_courses = Learning.objects.filter(
         Q(user = name)
     )
+    print(learn_courses)
     course_name = learn_courses.all()
 
     return render(request, 'main/Learning.html', {

@@ -169,12 +169,14 @@ def add_to_learning(request, course_id):
     learn = Learning()
     learn.user = request.user.username
     learn.course_id = course_id
-    learn.save()
-
+    if Learning.objects.filter(course_id=course_id).exists():
+        return redirect('addcmnt', courseid=course_id)
+    else:
+        learn.save()
     return redirect('addcmnt',courseid=course_id)
 
 def delern(request ,courseid):
-    learn = Learning.objects.get(course_id=courseid)
+    learn = Learning.objects.filter(course_id=courseid)
     learn.delete()
 
     return redirect('learn')

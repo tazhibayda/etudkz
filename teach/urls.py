@@ -9,7 +9,6 @@ urlpatterns = [
     path('test/',views.reglog , name='reglog'),
     path('add', views.add , name = 'add'),
     path('account', views.account, name = 'account'),
-    path('account/liked', views.liked, name = 'liked'),
 
 ]
 urlpatterns += staticfiles_urlpatterns()

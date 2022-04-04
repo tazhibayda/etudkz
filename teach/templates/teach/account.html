@@ -14,9 +14,56 @@
 
 <body>
     <div class="main">
-   {% include 'teach/list.html' %}
 
-        {% block mainpart %}
+        <div class="nav1">
+            <div class="profile1">
+                <!-- {% load static %} -->
+                <!-- <img src="{%static 'img.jpeg' %}" , alt="src"> -->
+
+                <h3 class="user_">{{ request.user.username }}</h3>
+            </div>
+            <div class="profile2">
+                <ul class="profile2_ul">
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-profile">
+                    Profile
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-photo">
+                    Image
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-account">
+                            Account
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-payment-methods">
+                            Payment method
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-privacy">
+                            Confidentiality
+                    </a>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:edit-notifications">
+                            Notifications
+                    </a>
+                    </li>
+                    </li>
+                    <li class="on1">
+                        <a href="" data-purpose="user_manage:close-account">
+                            Close account
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="nav2">
             <div class="navnav">
                 <div class="pr">
@@ -39,7 +86,7 @@
             </div>
         </div>
     </div>
-{% endblock %}
+
 </body>
 
 </html>

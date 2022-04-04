@@ -33,14 +33,8 @@
                                     </address>
                                 </div>
                             </div>
-
                             <div class="meetup-actions">
-                                {% if request.user in course.added.all %}
-                                <a class="btn" href="{% url 'like' course.id %}">Dislike</a>
-                                {% else %}
-                                <a class="btn" href="{% url 'like' course.id %}" >Like</a>
-                                {% endif %}
-                                <a href="/{{course.pk}}" class="btn">
+                                <a href="{{course.pk}}" class="btn">
                                 About
                                 </a>
                             </div>

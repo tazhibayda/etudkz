@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
 
@@ -11,10 +10,9 @@ class Course(models.Model):
     teacher = models.CharField(max_length=32, null=False)
     # icon = models.ImageField(upload_to='images' , null=False)
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    added = models.ManyToManyField(User, default=None)
-    # liked = models.BooleanField(False)
+
     def __str__(self):
-        return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price}  , {self.added.all()}'
+        return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} {self.id}'
 
 
 class Test(models.Model):
@@ -32,12 +30,10 @@ class Comment(models.Model):
    course_id = models.IntegerField(null=False)
    post = models.CharField(max_length=64)
    text = models.TextField(max_length=1024)
-   date = models.DateTimeField(auto_now_add=True)
-   anonymous = models.BooleanField(default=False)
-   # child = models.
-   # parent = models.OneToOneField('self' , on_delete=models.CASCADE , null=True)
+   date = models.DateField(default=timezone.now)
+   time = models.CharField(max_length=64,default="asds")
    def __str__(self):
-       return f'{self.pk} , {self.course_id} '
+       return f''
 
 
 class Learning(models.Model):

@@ -24,6 +24,18 @@ def account(request):
         return render(request, 'teach/login.html')
 
 
+def liked(request):
+    courses = Course.objects.all().filter(
+
+    )
+
+
+
+    return render(request , 'teach/Liked.html',{
+        'courses':courses,
+        'request':request,
+    })
+
 def login_view(request):
     boo = request.user.is_authenticated
     if request.method == 'POST':

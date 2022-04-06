@@ -61,7 +61,11 @@ def logout_view(request):
     logout(request)
     
 def index(request):
-    return render(request , 'teach/addCourse.html')
+    boo = request.user.is_authenticated
+    if boo and request.user.is_superuser:
+        return render(request , 'teach/addCourse.html')
+    else :
+        return render(request,'main/header.html')
 
 def add(request):
     if request.method == 'POST':
@@ -81,27 +85,29 @@ def add(request):
 
 
 def reglog(request):
-    # print(request.method)
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        user = request.POST['username']
-        if User.objects.filter(username=user).exists():
-            # print(12312321)
-            return render(request, 'teach/signup.html',{
-                'msg':'User already exists plaese choose another username',
-                'form':form,
-            })
-        elif form.is_valid():
-            form.save()
-        else:
-            return render(request, 'teach/signup.html', {
-                'msg': 'Your password or username entered incorrectly',
-                'form': form,
-            })
-    form = UserCreationForm()
-    return render(request, 'teach/signup.html' , {
-        'form':form
-    })
+    if request.user.is_superuser:
+        return render(request,'teach/addCourse.html')
+    else :
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            user = request.POST['username']
+            if User.objects.filter(username=user).exists():
+                # print(12312321)
+                return render(request, 'teach/signup.html',{
+                    'msg':'User already exists plaese choose another username',
+                    'form':form,
+                })
+            elif form.is_valid():
+                form.save()
+            else:
+                return render(request, 'teach/signup.html', {
+                    'msg': 'Your password or username entered incorrectly',
+                    'form': form,
+                })
+        form = UserCreationForm()
+        return render(request, 'teach/signup.html' , {
+            'form':form
+        })
 
 def regist(request):
     if request.method == 'POST':

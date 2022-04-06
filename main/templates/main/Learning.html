@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% include 'main/header.html' %}
+
+{% load static %}
 <body>
 <h1>About</h1>
 <div class="course">
@@ -13,7 +10,8 @@
             <ul class="comment">
                 <li>
                     <h3>{{ c.course_id }}</h3>
-                    <a style="float: right; margin-right: 2%" href="{% url 'delern' c.course_id %}">X</a>
+                    <a href="/{{c.course_id}}" class="btn">About</a>
+                    <a href="{% url 'delern' c.course_id %}">X</a>
                 </li>
             </ul>
             {% endfor %}

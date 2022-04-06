@@ -216,6 +216,7 @@ def openC(request,courseid):
                 'id': price,
                 'crsid': courseid,
                 'comments': comment,
+
             })
         else:
             return redirect('addcmnt',courseid=courseid)
@@ -244,7 +245,6 @@ def chec_learning(request):
     learn_courses = Learning.objects.filter(
         Q(user = name)
     )
-    print(learn_courses)
     course_name = learn_courses.all()
 
     return render(request, 'main/Learning.html', {
@@ -257,10 +257,16 @@ def add_to_learning(request, course_id):
     learn.user = request.user.username
     learn.course_id = course_id
     if Learning.objects.filter(course_id=course_id).exists():
-        return redirect('addcmnt', courseid=course_id)
+        return render(request, 'main/About.html', {
+            'crsid': course_id,
+            'msge':'You have already added this course to learning'
+        })
     else:
         learn.save()
-    return redirect('addcmnt',courseid=course_id)
+        return render(request, 'main/About.html', {
+            'crsid': course_id,
+            'msge': 'added to the learning'
+        })
 
 def delern(request ,courseid):
     learn = Learning.objects.filter(course_id=courseid)

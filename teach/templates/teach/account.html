@@ -23,14 +23,12 @@
                 </div>
                 <div class="profile3">
                     <div class="in_g">
-                        <input type="text" name="name" value='{{ request.user.username }}' maxlength="64" placeholder="Имя" class="textinput textInput form-control" required="" id="id_name">
+                        <input type="text" name="name" value='{{ request.user.first_name }}' maxlength="64" placeholder="Имя" class="textinput textInput form-control" required="" id="id_name" disabled>
                     </div>
                     <div class="in_g">
-                        <input type="text" name="name" value='' maxlength="64" placeholder="Surname" class="textinput textInput form-control" required="" id="id_name">
+                        <input type="text" name="name" value='{{ request.user.last_name }}' maxlength="64" placeholder="Surname" class="textinput textInput form-control" required="" id="id_name" disabled>
                     </div>
-                    <div class="in_g">
-                        <input type="text" name="name" value='' maxlength="64" placeholder="Workspace" class="textinput textInput form-control" required="" id="id_name">
-                    </div>
+
                 </div>
                 <!-- <div class="submit-row"> <input type="submit" name="submit" value="Сохранить" class="btn btn-primary " id="submit-id-submit">
                 </div> -->

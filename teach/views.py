@@ -27,6 +27,14 @@ def account(request):
         return render(request, 'teach/login.html')
 
 
+def user(request, username):
+    if User.objects.get(username = username) is not None:
+        user = User.objects.get(username = username)
+        return render(request, 'teach/user.html',{
+                        'user':user,
+            }
+        )
+
 def liked(request):
     courses = Course.objects.all().filter(
 

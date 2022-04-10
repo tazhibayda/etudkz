@@ -12,7 +12,7 @@ class Course(models.Model):
     # icon = models.ImageField(upload_to='images' , null=False)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     added = models.ManyToManyField(User, default=None)
-    liked = models.BooleanField(False)
+    liked = models.BooleanField(default=False)
     def __str__(self):
         return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price}  , {self.added.all()}'
 
@@ -26,6 +26,10 @@ class Test(models.Model):
     def __str__(self):
         return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} {self.id}'
 
+class Friends(models.Model):
+    # a = models.ForeignKey(User, on_delete=models.CASCADE)
+    # friends = models.ManyToManyField(User)
+    a = models.CharField(max_length=120)
 
 class Comment(models.Model):
    author = models.CharField(max_length=64)

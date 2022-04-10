@@ -38,8 +38,7 @@
             <a style="background-color: green; width: 50px ; padding: 3px">+</a>
             <a style="background-color: red; width: 50px;padding: 3px;">--</a>
         </div>
-            <li>
-                <h3>{{  c.author }}</h3>
+               <h3> <a href="/user/{{ c.author }}">{{  c.author }}</a></h3>
                 <h4>{{ c.post }}</h4>
                 <h6>{{ c.text }}</h6>
                 <small>{{ time }}</small>

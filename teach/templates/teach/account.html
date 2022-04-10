@@ -14,9 +14,7 @@
 
 <body>
     <div class="main">
-   {% include 'teach/list.html' %}
-
-        {% block mainpart %}
+        {% include 'teach/list.html' %} {% block mainpart %}
         <div class="nav2">
             <div class="navnav">
                 <div class="pr">
@@ -34,12 +32,12 @@
                         <input type="text" name="name" value='' maxlength="64" placeholder="Workspace" class="textinput textInput form-control" required="" id="id_name">
                     </div>
                 </div>
-                <div class="submit-row"> <input type="submit" name="submit" value="Сохранить" class="btn btn-primary " id="submit-id-submit">
-                </div>
+                <!-- <div class="submit-row"> <input type="submit" name="submit" value="Сохранить" class="btn btn-primary " id="submit-id-submit">
+                </div> -->
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}
 </body>
 
 </html>

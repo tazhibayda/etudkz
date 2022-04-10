@@ -11,8 +11,9 @@ urlpatterns = [
     path('logout', views.logout_view , name = 'logout' ),
     path('<int:courseid>/addcmnt', views.addCom , name='addcmnt'),
     path('delcom/<int:commentId>',views.delcomment ,name='delcom'),
-    path('main/Learning', views.chec_learning, name='learn'),
+    path('main/Learning/', views.chec_learning, name='learn'),
     path('addlearn/<int:course_id>', views.add_to_learning, name='addlearn'),
     path('delern/<int:courseid>', views.delern, name='delern'),
-    path('like/<int:courseid>', views.like , name='like' )
+    path('like/<int:courseid>', views.like , name='like' ),
+    path('learning_card/<int:courseid>', views.learning_card , name='learning_card' ),
 ]

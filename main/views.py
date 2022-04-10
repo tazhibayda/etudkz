@@ -12,7 +12,12 @@ def course(request):
     return render(request , 'main/Card.html',{
         'courses':courses,
     })
+def course_test(request):
+    courses = Course.objects.all()
 
+    return render(request , 'main/card_give.html',{
+        'courses':courses,
+    })
 
 def header(request):
     boo = request.user.is_authenticated()
@@ -242,6 +247,7 @@ def like(request , courseid):
 
 def chec_learning(request):
     name = request.user.username
+    
     learn_courses = Learning.objects.filter(
         Q(user = name)
     )
@@ -249,7 +255,19 @@ def chec_learning(request):
 
     return render(request, 'main/Learning.html', {
         'name': name,
-        'crs':course_name
+        'crs':course_name,
+        # 'name_course':name_course,
+        
+    })
+def learning_card(request,courseid):
+    c = Course.objects.get(pk = courseid)
+    name = c.coursename
+    price = c.price
+    teacher = c.teacher
+    return render(request, 'main/Learning.html', {
+        'crs_name':name,
+        'teacher' : teacher,
+        'price' : price,
     })
 
 def add_to_learning(request, course_id):

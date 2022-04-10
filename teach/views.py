@@ -1,15 +1,18 @@
+from urllib import request
 from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirect
 import re
 from django.shortcuts import render,HttpResponseRedirect , HttpResponse,redirect
 from main.models import Course
 from django.contrib.auth import authenticate , login , logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 # from django. import response
 from django.template import response
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import auth,User
 from teach.forms import SignUpForm
 from main.models import Course
+from django.views import generic
+
 
 
 
@@ -28,10 +31,7 @@ def liked(request):
     courses = Course.objects.all().filter(
 
     )
-
-
-
-    return render(request , 'teach/Liked.html',{
+    return render(request , 'teach/liked1.html',{
         'courses':courses,
         'request':request,
     })
@@ -121,6 +121,16 @@ def regist(request):
     return render(request, 'teach/regorlog.html' , {
         'form':form
     })
+
+
+class UserEditView(generic.UpdateView):
+    form_class = UserChangeForm
+    template_name = 'teach/edit_profile.html'
+    success_url = reverse_lazy('account')
+
+    def get_object(self):
+        return self.request.user
+
 
     # if request.method == 'POST':
         # form = UserCreationForm(request='POST')

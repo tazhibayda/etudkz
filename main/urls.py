@@ -16,7 +16,6 @@ urlpatterns = [
     path('addlearn/<int:course_id>', views.add_to_learning, name='addlearn'),
     path('delern/<int:courseid>', views.delern, name='delern'),
     path('like/<int:courseid>', views.like , name='like' ),
-    path('learning_card/<int:courseid>', views.learning_card , name='learning_card' ),
     path('account/edit_profile/', teach.views.UserEditView.as_view(), name='edit_profile')
 
 ]

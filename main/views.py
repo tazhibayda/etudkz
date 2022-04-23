@@ -247,48 +247,47 @@ def like(request , courseid):
 
 def chec_learning(request):
     name = request.user.username
-    
-    learn_courses = Learning.objects.filter(
-        Q(user = name)
+    user_id = User.objects.get(username = name).pk
+    learn_courses = Course.objects.filter(
+        Q(learn_user = user_id)
     )
-    course_name = learn_courses.all()
+    a = len(learn_courses)
+
 
     return render(request, 'main/Learning.html', {
-        'name': name,
-        'crs':course_name,
-        # 'name_course':name_course,
-        
-    })
-def learning_card(request,courseid):
-    c = Course.objects.get(pk = courseid)
-    name = c.coursename
-    price = c.price
-    teacher = c.teacher
-    return render(request, 'main/Learning.html', {
-        'crs_name':name,
-        'teacher' : teacher,
-        'price' : price,
+        'a':a,
+        'name':name,
+        'courses': learn_courses,
+        'request': request,
     })
 
 def add_to_learning(request, course_id):
-    learn = Learning()
-    learn.user = request.user.username
-    learn.course_id = course_id
-    if Learning.objects.filter(course_id=course_id).exists():
-        return render(request, 'main/About.html', {
-            'crsid': course_id,
-            'msge':'You have already added this course to learning'
-        })
+    crs = Course.objects.get(pk=course_id)
+    if crs.learn_user.contains(request.user):
+        msg = 'You have already added this course'
     else:
-        learn.save()
-        return render(request, 'main/About.html', {
-            'crsid': course_id,
-            'msge': 'added to the learning'
-        })
+        crs.learn_user.add(request.user)
+        crs.save()
+        msg = 'Course added'
+    name = crs.coursename
+    teacher = crs.teacher
+    price = crs.price
+    comment = Comment.objects.filter(
+        Q(course_id=crs.pk)
+    )
+    return render(request, 'main/About.html', {
+        'name': name,
+        'teacher': teacher,
+        'id': price,
+        'comments': comment,
+        'crsid': course_id,
+        'msg': msg
+    })
+
 
 def delern(request ,courseid):
-    learn = Learning.objects.filter(course_id=courseid)
-    learn.delete()
-
+    crs = Course.objects.get(pk=courseid)
+    crs.learn_user.remove(request.user)
+    crs.save()
     return redirect('learn')
 

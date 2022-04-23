@@ -11,10 +11,11 @@ class Course(models.Model):
     teacher = models.CharField(max_length=32, null=False)
     # icon = models.ImageField(upload_to='images' , null=False)
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    added = models.ManyToManyField(User, default=None)
+    added = models.ManyToManyField(User, default=None,related_name='added')
+    learn_user = models.ManyToManyField(User,blank=True,related_name='learn_user')
     liked = models.BooleanField(default=False)
     def __str__(self):
-        return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price}  , {self.added.all()}'
+        return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} , {self.added.all()},'
 
 
 class Test(models.Model):
@@ -45,10 +46,3 @@ class Comment(models.Model):
    def __str__(self):
        return f'{self.pk} , {self.course_id}'
 
-
-class Learning(models.Model):
-    user = models.CharField(max_length=64)
-    course_id = models.IntegerField(null=False)
-
-    def __str__(self):
-        return f' user: {self.user}, course_id: {self.course_id} {self.id}'

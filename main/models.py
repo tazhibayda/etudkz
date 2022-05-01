@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -14,9 +14,14 @@ class Course(models.Model):
     added = models.ManyToManyField(User, default=None,related_name='added')
     learn_user = models.ManyToManyField(User,blank=True,related_name='learn_user')
     liked = models.BooleanField(default=False)
+
     def __str__(self):
         return f'{self.coursename}, Teacher: {self.teacher}, price: {self.price} , {self.added.all()},'
 
+    def get_absolute_url(self):
+        return reverse('addcmnt',
+                       args=[self.id],
+                       )
 
 class Test(models.Model):
     coursename = models.CharField(max_length=256, null=False)
@@ -45,4 +50,5 @@ class Comment(models.Model):
    # parent = models.OneToOneField('self' , on_delete=models.CASCADE , null=True)
    def __str__(self):
        return f'{self.pk} , {self.course_id}'
+
 

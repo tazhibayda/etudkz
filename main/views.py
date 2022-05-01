@@ -1,10 +1,14 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render , HttpResponse,redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.urls import *
 from .models import *
 # Create your views here.
 from django.db.models import Q
+from .forms import EmailPostForm
+from django.core.mail import send_mail
+
+
 
 def course(request):
     courses = Course.objects.all()
@@ -157,7 +161,8 @@ def addCom(request,courseid):
                 'id': price,
                 'crsid': courseid,
                 'comments': comment,
-                'msg': 'You not logged in'
+                'msg': 'You not logged in',
+                'c_id': c.id,
             })
         else:
             com = Comment()
@@ -178,6 +183,7 @@ def addCom(request,courseid):
                 'id': price,
                 'crsid': courseid,
                 'comments': comment,
+                'c_id': c.id,
             })
 
     else:
@@ -194,7 +200,8 @@ def addCom(request,courseid):
             'id': price,
             'comments': comment,
             'crsid': courseid,
-            'msg':'nopost'
+            'msg':'nopost',
+            'c_id': c.id,
         })
 
 
@@ -290,4 +297,30 @@ def delern(request ,courseid):
     crs.learn_user.remove(request.user)
     crs.save()
     return redirect('learn')
+
+
+def post_share(request, c_id):
+    # Retrieve post by id
+    course = get_object_or_404(Course, id=c_id)
+    sent = False
+    if request.method == 'POST':
+        # Form was submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # Form fields passed validation
+            cd = form.cleaned_data
+            post_url = request.build_absolute_uri(
+                course.get_absolute_url())
+            subject = f"{cd['name']} recommends you read " \
+                      f"{course.coursename}"
+            message = f"Read {course.coursename} at {post_url}\n\n" \
+                      f"{cd['name']}\'s comments: {cd['comments']}"
+            send_mail(subject, message, 'admin@myblog.com',
+                      [cd['to']])
+            sent = True
+    else:
+        form = EmailPostForm()
+    return render(request, 'main/share.html', {'course': course,
+                                                'form': form,
+                                                'sent': sent})
 

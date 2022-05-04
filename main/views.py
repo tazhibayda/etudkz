@@ -7,6 +7,8 @@ from .models import *
 from django.db.models import Q
 from .forms import EmailPostForm
 from django.core.mail import send_mail
+from django import forms
+from .models import *
 
 
 
@@ -315,7 +317,7 @@ def post_share(request, c_id):
                       f"{course.coursename}"
             message = f"Read {course.coursename} at {post_url}\n\n" \
                       f"{cd['name']}\'s comments: {cd['comments']}"
-            send_mail(subject, message, 'admin@myblog.com',
+            send_mail(subject, message, '200103408@sdu.stu.edu.kz',
                       [cd['to']])
             sent = True
     else:
@@ -323,4 +325,6 @@ def post_share(request, c_id):
     return render(request, 'main/share.html', {'course': course,
                                                 'form': form,
                                                 'sent': sent})
+
+
 

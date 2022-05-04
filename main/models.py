@@ -52,6 +52,8 @@ class Comment(models.Model):
        return f'{self.pk} , {self.course_id}'
 
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     avatar = models.ImageField()
+
